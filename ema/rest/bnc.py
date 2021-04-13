@@ -90,7 +90,7 @@ class Order(Resource):
                          envelope='data',
                          code=http.client.OK)
     def get(self):
-        """get the price from the binance API"""
+        """get all your open orders"""
 
         timestamp = utils.current_time()
         signature = utils.sign_request(f'recvWindow=60000&timestamp={timestamp}'.encode())
@@ -102,11 +102,11 @@ class Order(Resource):
 @bnc_ns.route('/price/symbol=<string:symbol>')
 class PriceTicker(Resource):
 
-    @bnc_ns.doc('ping the binance')
+    @bnc_ns.doc('get the price by the symbol')
     @bnc_ns.marshal_with(price_symbol_response,
                          code=http.client.OK)
     def get(self, symbol):
-        """get the price from the binance API"""
+        """get the price by the symbol"""
 
         response = price_ticker(symbol)
 
