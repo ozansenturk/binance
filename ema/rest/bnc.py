@@ -85,7 +85,7 @@ class Ping(Resource):
 @bnc_ns.route('/openOrders')
 class Order(Resource):
 
-    @bnc_ns.doc('get orders by date')
+    @bnc_ns.doc('get open orders')
     @bnc_ns.marshal_with(order_response,
                          envelope='data',
                          code=http.client.OK)
